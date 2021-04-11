@@ -1,8 +1,49 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IndexViewModel
+@using StackOverflow.Data
+
+<div class="container">
+    <main role="main" class="pb-3" style="margin-top: 80px;">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                @foreach (Question q in Model.Questions)
+                {
+                    <div class="card card-body bg-light">
+                        <h4>
+                            <a href="/questions/viewquestion?id=@q.Id">
+                                @q.Title
+                            </a>
+                        </h4>
+                        <div>
+                            <span>Tags:</span>
+                            @foreach (QuestionsTags qt in q.QuestionsTags)
+                            {
+                                <span class="badge badge-primary">@qt.Tag.TagName</span>
+                            }
+                        </div>
+                        <div style="margin-top: 10px;">
+                            @q.Text
+                        </div>
+                        <span>Likes: @q.Likes.Count()</span>
+                        <br />
+                        <span>@q.Answers.Count() answer(s)</span>
+                    </div>
+                }
+            </div>
+    </main>
+</div>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+    <script>
+        $(() => {
+            $("#tags").tagsinput({
+                tagClass: 'badge badge-primary'
+            });
+        })
+    </script>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section styles
+    {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
+}
