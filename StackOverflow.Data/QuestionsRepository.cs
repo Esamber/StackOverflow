@@ -18,6 +18,7 @@ namespace StackOverflow.Data
         {
             using var ctx = new QuestionsDbContext(_connectionString);
             return ctx.Questions.Include(q => q.Answers)
+                .Include(q => q.Likes)
                 .Include(q => q.QuestionsTags)
                 .ThenInclude(qt => qt.Tag)
                 .ToList();
@@ -70,6 +71,7 @@ namespace StackOverflow.Data
             using var ctx = new QuestionsDbContext(_connectionString);
             return ctx.Questions.Include(q  => q.Answers)
                 .ThenInclude(a => a.User)
+                .Include(q => q.Likes)
                 .Include(q => q.QuestionsTags)
                 .ThenInclude(qt => qt.Tag)
                 .FirstOrDefault(q => q.Id == id);

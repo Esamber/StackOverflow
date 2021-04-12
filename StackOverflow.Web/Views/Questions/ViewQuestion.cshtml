@@ -21,7 +21,7 @@
                 }
             }
             <br />
-            <span>Likes: </span> <span data-question-id="@Model.Question.Id" id="likes-count">@((Model.Question.Likes == null) ? 0 : Model.Question.Likes.Count())</span>
+            <span>Likes: </span> <span data-question-id="@Model.Question.Id" id="likes-count" >@((Model.Question.Likes == null) ? 0 : Model.Question.Likes.Count())</span>
             @if (User.Identity.IsAuthenticated)
             {
                 <br />
@@ -31,7 +31,7 @@
                 }
                 else
                 {
-                    <span style="font-size: 40px; cursor: pointer;" class="oi oi-heart"></span>
+                    <span style="font-size: 40px; cursor: pointer;" class="oi oi-heart text-danger"></span>
                 }
             }
         </div>

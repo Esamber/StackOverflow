@@ -1,6 +1,6 @@
 ﻿$(() => {
 
-    let questionId = $("#like-question").data("question-id");
+    let questionId = $("#likes-count").data("question-id");
 
     $("#like-question").on('click', function () {
         $("#like-question").addClass("text-danger");
