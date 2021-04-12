@@ -18,12 +18,12 @@ namespace StackOverflow.Web.Controllers
         {
             _connectionString = configuration.GetConnectionString("ConStr");
         }
-        IActionResult Index()
+        public IActionResult Index()
         {
             QuestionsRepository db = new(_connectionString);
             IndexViewModel vm = new IndexViewModel()
             {
-                Questions = db.GetQuestions()
+                Questions = db.GetQuestions().OrderByDescending(q => q.DatePosted).ToList()
             };
             return View(vm);
         }

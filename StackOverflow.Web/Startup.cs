@@ -12,6 +12,7 @@ namespace StackOverflow.Web
 {
     public class Startup
     {
+        private string _cookieScheme = "AuthDemo";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -22,6 +23,11 @@ namespace StackOverflow.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(_cookieScheme)
+                .AddCookie(_cookieScheme, options =>
+                {
+                    options.LoginPath = "/account/login";
+                });
             services.AddControllersWithViews();
             services.AddSession();
         }
@@ -41,6 +47,7 @@ namespace StackOverflow.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
 

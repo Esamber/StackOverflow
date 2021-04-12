@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
+using System.Linq;
 
 namespace StackOverflow.Data
 {
@@ -26,6 +27,11 @@ namespace StackOverflow.Data
         public DbSet<QuestionsTags> QuestionsTags { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
             modelBuilder.Entity<QuestionsTags>()
                 .HasKey(qt => new { qt.QuestionId, qt.TagId });
 

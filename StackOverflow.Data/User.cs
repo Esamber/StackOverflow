@@ -16,8 +16,10 @@ namespace StackOverflow.Data
     {
         public int Id { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
+        public DateTime DatePosted { get; set; }
         public List<Answer> Answers { get; set; }
         public List<QuestionsTags> QuestionsTags { get; set; }
         public List<Likes> Likes { get; set; }
@@ -28,6 +30,9 @@ namespace StackOverflow.Data
         public string Text { get; set; }
         public int QuestionId { get; set; }
         public Question Question { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public DateTime DatePosted { get; set; }
     }
     public class Likes
     {
@@ -49,5 +54,4 @@ namespace StackOverflow.Data
         public Question Question { get; set; }
         public Tag Tag { get; set; }
     }
-
 }

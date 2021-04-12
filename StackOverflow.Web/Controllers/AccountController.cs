@@ -10,10 +10,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace StackOverflow.Web.Controllers
 {
-    public class AccountControler : Controller
+    public class AccountController : Controller
     {
         private string _connectionString;
-        public AccountControler(IConfiguration configuration)
+        public AccountController(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("ConStr");
         }

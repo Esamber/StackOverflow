@@ -1,0 +1,38 @@
+﻿<div class="container">
+    <main role="main" class="pb-3" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header" style="font-size:20px">Ask a question</div>
+                    <div class="card-body">
+                        <form method="post" action="/questions/addquestion">
+                            <input class="form-control" name="title" placeholder="Title" />
+                            <br />
+                            <textarea class="form-control" placeholder="Type your question here..." rows="10" name="text"></textarea>
+                            <br />
+                            <select multiple class="form-control" id="tags" name="tags"></select>
+                            <br />
+                            <button class="btn btn-primary" id="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+    <script>
+        $(() => {
+            $("#tags").tagsinput({
+                tagClass: 'badge badge-primary'
+            });
+        })
+    </script>
+}
+
+@section styles
+    {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
+}
