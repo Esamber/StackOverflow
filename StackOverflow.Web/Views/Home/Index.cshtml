@@ -30,7 +30,7 @@
                             }
                         </div>
                         <div style="margin-top: 10px;">
-                            @q.Text
+                            @(q.Text.Length < 200 ? q.Text : (q.Text.Substring(0, 200) + "..."))
                         </div>
                         <span>Likes: @((q.Likes == null) ? 0 : q.Likes.Count()) </span>
                         <br />
